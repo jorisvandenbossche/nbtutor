@@ -32,7 +32,7 @@ your profile folder):
 
 and then run the following `nbconvert` command to convert a notebook:
 
-    ipython nbconvert notebook.ipynb --to-notebook
+    ipython nbconvert notebook.ipynb --to notebook
 
 
 Copyright (c) 2015, Joris Van den Bossche

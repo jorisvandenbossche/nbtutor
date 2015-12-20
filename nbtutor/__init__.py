@@ -3,7 +3,11 @@
 nbtutor - a small utility to indicate which cells should be cleared (exercises).
 """
 
-from IPython.nbconvert.preprocessors.base import Preprocessor
+try:
+    from nbconvert.preprocessors.base import Preprocessor
+except ImportError:
+    from IPython.nbconvert.preprocessors.base import Preprocessor
+
 
 class ClearExercisePreprocessor(Preprocessor):
 

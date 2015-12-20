@@ -9,30 +9,25 @@ To install this, git clone the repo and then do:
 
     git clone https://github.com/jorisvandenbossche/nbtutor.git
     cd nbtutor
-    python setup.py develop
+    pip install .
 
-Further, you need to copy the nbextension to your IPython folder:
+Further, you need to install the nbextension:
 
-    cp nbextensions/* $(ipython locate)/nbextensions/
+    jupyter nbextension install nbextension/
 
-To ensure the the extension is loaded automatically, edit your your `custom.js`
-(found in `$(ipython locate profile)/static/custom/custom.js`) to include the
-following:
+To ensure the the extension is loaded automatically, you also have to
+enable the extension:
 
-    $([IPython.events]).on("app_initialized.NotebookApp", function () {
-        IPython.load_extensions("excluder");
-    });
+    jupyter nbextension enable nbtutor
 
-And for converting, add to your `ipython_nbconvert_config.py` file (inside
-your profile folder):
+And for converting, make a file that is eg called 'nbtutor_config.py' with
+the following content:
 
-    c = get_config()
     c.Exporter.preprocessors = ['nbtutor.ClearExcercisePreprocessor']
-
 
 and then run the following `nbconvert` command to convert a notebook:
 
-    ipython nbconvert notebook.ipynb --to notebook
+    jupyter nbconvert notebook.ipynb --to notebook --config nbtutor_config.py
 
 
 Copyright (c) 2015, Joris Van den Bossche

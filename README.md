@@ -23,7 +23,7 @@ enable the extension:
 And for converting, make a file that is eg called 'nbtutor_config.py' with
 the following content:
 
-    c.Exporter.preprocessors = ['nbtutor.ClearExcercisePreprocessor']
+    c.Exporter.preprocessors = ['nbtutor.ClearExercisePreprocessor']
 
 and then run the following `nbconvert` command to convert a notebook:
 

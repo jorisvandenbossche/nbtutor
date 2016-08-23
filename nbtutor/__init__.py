@@ -14,7 +14,11 @@ class ClearExercisePreprocessor(Preprocessor):
     def preprocess_cell(self, cell, resources, index):
 
         if 'clear_cell' in cell.metadata and cell.metadata.clear_cell:
-            cell['source'] = []
+            fname = 'snippets/' + resources['unique_key'] + str(cell['execution_count']) + '.py'
+            with open(fname, 'w') as f:
+                f.write(cell['source'])
+            cell['source'] = ["# %load {0}".format(fname)]
+            #cell['source'] = []
             cell['execution_count'] = None
             cell['outputs'] = []
 

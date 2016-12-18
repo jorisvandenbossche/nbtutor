@@ -13,7 +13,7 @@ To install this, git clone the repo and then do:
 
 Further, you need to install the nbextension:
 
-    jupyter nbextension install nbextension/
+    jupyter nbextension install nbextension/ --user
 
 To ensure the the extension is loaded automatically, you also have to
 enable the extension:

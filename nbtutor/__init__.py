@@ -21,17 +21,21 @@ class ClearExercisePreprocessor(Preprocessor):
         if not os.path.exists(self.solutions_dir):
             os.makedirs(self.solutions_dir)
 
+        self.solution_count = 1
+
         super(Preprocessor, self).__init__(**kw)
 
     def preprocess_cell(self, cell, resources, index):
 
         if 'clear_cell' in cell.metadata and cell.metadata.clear_cell:
             fname = os.path.join(
-                self.solutions_dir, resources['metadata']['name'] + str(cell['execution_count']) + '.py')
+                self.solutions_dir, resources['metadata']['name'] + str(self.solution_count) + '.py')
             with open(fname, 'w') as f:
                 f.write(cell['source'])
             cell['source'] = ["# %load {0}".format(fname)]
             cell['outputs'] = []
             # cell['source'] = []
+
+            self.solution_count += 1
 
         return cell, resources

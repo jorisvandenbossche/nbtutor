@@ -17,6 +17,12 @@ class ClearExercisePreprocessor(Preprocessor):
 
     solutions_dir = Unicode("_solutions").tag(config=True)
 
+    def __init__(self, **kw):
+        if not os.path.exists(self.solutions_dir):
+            os.makedirs(self.solutions_dir)
+
+        super(Preprocessor, self).__init__(**kw)
+
     def preprocess_cell(self, cell, resources, index):
 
         if 'clear_cell' in cell.metadata and cell.metadata.clear_cell:

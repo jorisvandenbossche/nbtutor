@@ -22,6 +22,7 @@ class ClearExercisePreprocessor(Preprocessor):
             os.makedirs(self.solutions_dir)
 
         self.solution_count = 1
+        self.exercise_count = 1
 
         super(Preprocessor, self).__init__(**kw)
 
@@ -38,4 +39,9 @@ class ClearExercisePreprocessor(Preprocessor):
 
             self.solution_count += 1
 
+        if cell.cell_type == "markdown" and "EXERCISE" in cell.source:
+            cell.source = cell.source.replace('EXERCISE', f'EXERCISE {self.exercise_count}')
+            self.exercise_count += 1
+
         return cell, resources
+

@@ -28,7 +28,7 @@ class ClearExercisePreprocessor(Preprocessor):
 
     def preprocess_cell(self, cell, resources, index):
 
-        if 'clear_cell' in cell.metadata and cell.metadata.clear_cell:
+        if 'tags' in cell.metadata and 'nbtutor-solution' in cell.metadata.tags:
             fname = os.path.join(
                 self.solutions_dir, resources['metadata']['name'] + str(self.solution_count) + '.py')
             with open(fname, 'w') as f:
